@@ -1,0 +1,1000 @@
+```css
+/* =====================================
+   GOOGLE FONTS
+===================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+/* =====================================
+   VARIABLES
+===================================== */
+
+:root {
+    --cyan: #00f7ff;
+    --blue: #0066ff;
+    --purple: #9d00ff;
+    --pink: #ff00c8;
+    --green: #00ff88;
+    --yellow: #ffe600;
+    --red: #ff3158;
+
+    --dark: #02030a;
+    --card: #09111f;
+}
+
+
+/* =====================================
+   RESET
+===================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =====================================
+   BODY
+===================================== */
+
+body {
+    min-height: 100vh;
+
+    font-family: 'Poppins', sans-serif;
+
+    color: white;
+
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(0, 247, 255, 0.15),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(157, 0, 255, 0.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 80%,
+            rgba(255, 0, 200, 0.13),
+            transparent 30%
+        ),
+        #02030a;
+}
+
+
+/* =====================================
+   ANIMATED GRID
+===================================== */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 247, 255, 0.04) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0, 247, 255, 0.04) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    animation: gridMove 15s linear infinite;
+
+    pointer-events: none;
+}
+
+
+@keyframes gridMove {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(45px);
+    }
+
+}
+
+
+/* =====================================
+   GLOWING ORBS
+===================================== */
+
+.orb {
+    position: fixed;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+
+    opacity: 0.3;
+
+    pointer-events: none;
+}
+
+
+.orb1 {
+    background: #00f7ff;
+
+    top: -100px;
+    left: -80px;
+
+    animation: orbMove1 10s infinite alternate;
+}
+
+
+.orb2 {
+    background: #9d00ff;
+
+    right: -100px;
+    top: 30%;
+
+    animation: orbMove2 12s infinite alternate;
+}
+
+
+.orb3 {
+    background: #ff00c8;
+
+    left: 40%;
+    bottom: -170px;
+}
+
+
+@keyframes orbMove1 {
+
+    to {
+        transform: translate(150px, 150px);
+    }
+
+}
+
+
+@keyframes orbMove2 {
+
+    to {
+        transform: translate(-120px, 80px);
+    }
+
+}
+
+
+/* =====================================
+   MAIN CONTAINER
+===================================== */
+
+.container {
+    width: 92%;
+
+    max-width: 950px;
+
+    margin: auto;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 30px 0;
+
+    position: relative;
+
+    z-index: 5;
+}
+
+
+/* =====================================
+   GLASS CARD
+===================================== */
+
+.card {
+    width: 100%;
+
+    padding: 35px;
+
+    background: rgba(7, 14, 30, 0.78);
+
+    border: 1px solid rgba(0, 247, 255, 0.22);
+
+    border-radius: 28px;
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 0 30px rgba(0, 247, 255, 0.08),
+        0 0 80px rgba(157, 0, 255, 0.06);
+
+    animation: cardEnter 0.6s ease;
+}
+
+
+@keyframes cardEnter {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =====================================
+   LOGO
+===================================== */
+
+.logo {
+    width: 100px;
+    height: 100px;
+
+    margin: 0 auto 25px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 45px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--cyan),
+            var(--purple),
+            var(--pink)
+        );
+
+    box-shadow:
+        0 0 25px var(--cyan),
+        0 0 60px rgba(157, 0, 255, 0.5);
+
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+
+@keyframes logoFloat {
+
+    50% {
+        transform:
+            translateY(-10px)
+            rotate(5deg);
+    }
+
+}
+
+
+/* =====================================
+   MAIN TITLE
+===================================== */
+
+.main-title {
+    text-align: center;
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: clamp(32px, 6vw, 65px);
+
+    font-weight: 800;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--blue),
+            var(--purple),
+            var(--pink),
+            var(--cyan)
+        );
+
+    background-size: 300%;
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+    animation: titleGradient 5s linear infinite;
+}
+
+
+@keyframes titleGradient {
+
+    100% {
+        background-position: 300%;
+    }
+
+}
+
+
+/* =====================================
+   SUBTITLE
+===================================== */
+
+.subtitle {
+    text-align: center;
+
+    color: #aeb8ca;
+
+    margin: 15px auto 30px;
+
+    max-width: 600px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================
+   FEATURES
+===================================== */
+
+.features {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin: 30px 0;
+}
+
+
+.feature {
+    padding: 18px 10px;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-radius: 16px;
+
+    text-align: center;
+}
+
+
+.feature-icon {
+    font-size: 27px;
+
+    margin-bottom: 7px;
+}
+
+
+.feature h3 {
+    font-family: 'Orbitron';
+
+    font-size: 14px;
+
+    color: var(--cyan);
+}
+
+
+.feature p {
+    font-size: 12px;
+
+    color: #919aad;
+
+    margin-top: 4px;
+}
+
+
+/* =====================================
+   BUTTON
+===================================== */
+
+.main-btn {
+    border: none;
+
+    outline: none;
+
+    display: block;
+
+    margin: 20px auto 0;
+
+    padding: 16px 45px;
+
+    border-radius: 50px;
+
+    color: white;
+
+    font-family: 'Orbitron';
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--purple),
+            var(--pink)
+        );
+
+    box-shadow:
+        0 8px 30px
+        rgba(157, 0, 255, 0.35);
+
+    transition: 0.3s;
+}
+
+
+.main-btn:hover {
+    transform:
+        translateY(-4px)
+        scale(1.04);
+
+    box-shadow:
+        0 0 20px var(--purple),
+        0 0 40px rgba(255, 0, 200, 0.4);
+}
+
+
+/* =====================================
+   QUIZ TOP
+===================================== */
+
+.quiz-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+
+.level-tag,
+.score-tag {
+    padding: 10px 18px;
+
+    border-radius: 30px;
+
+    font-family: 'Orbitron';
+
+    font-size: 13px;
+
+    background:
+        rgba(0, 247, 255, 0.08);
+
+    border:
+        1px solid
+        rgba(0, 247, 255, 0.25);
+}
+
+
+.level-tag {
+    color: var(--cyan);
+}
+
+
+.score-tag {
+    color: var(--green);
+}
+
+
+/* =====================================
+   LEVEL INDICATORS
+===================================== */
+
+.levels {
+    display: flex;
+
+    gap: 8px;
+
+    margin-bottom: 25px;
+}
+
+
+.level-dot {
+    flex: 1;
+
+    height: 7px;
+
+    border-radius: 20px;
+
+    background: #162033;
+}
+
+
+.level-dot.completed {
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--purple)
+        );
+
+    box-shadow:
+        0 0 10px var(--cyan);
+}
+
+
+.level-dot.current {
+    background: var(--pink);
+
+    box-shadow:
+        0 0 12px var(--pink);
+}
+
+
+/* =====================================
+   TIMER
+===================================== */
+
+.timer-section {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+
+.timer-circle {
+    width: 65px;
+    height: 65px;
+
+    min-width: 65px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-family: 'Orbitron';
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    border:
+        4px solid
+        var(--cyan);
+
+    box-shadow:
+        0 0 15px
+        rgba(0, 247, 255, 0.35);
+}
+
+
+.timer-danger {
+    color: var(--red) !important;
+
+    border-color: var(--red) !important;
+
+    box-shadow:
+        0 0 20px
+        rgba(255, 49, 88, 0.5) !important;
+
+    animation:
+        pulseTimer
+        0.6s infinite alternate;
+}
+
+
+@keyframes pulseTimer {
+
+    to {
+        transform: scale(1.08);
+    }
+
+}
+
+
+/* =====================================
+   QUESTION PROGRESS
+===================================== */
+
+.progress-container {
+    flex: 1;
+}
+
+
+.question-number {
+    font-size: 13px;
+
+    color: #8994aa;
+
+    margin-bottom: 7px;
+}
+
+
+.progress-bar {
+    width: 100%;
+
+    height: 10px;
+
+    background: #151e30;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+.progress {
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--blue),
+            var(--purple),
+            var(--pink)
+        );
+
+    border-radius: 20px;
+
+    transition: 0.4s;
+}
+
+
+/* =====================================
+   QUESTION
+===================================== */
+
+.question-box {
+    margin: 25px 0;
+}
+
+
+.question-title {
+    font-family: 'Orbitron';
+
+    line-height: 1.5;
+
+    font-size:
+        clamp(18px, 3vw, 25px);
+}
+
+
+/* =====================================
+   ANSWERS
+===================================== */
+
+.answers {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 15px;
+}
+
+
+.answer-btn {
+    min-height: 80px;
+
+    padding: 17px;
+
+    border:
+        1px solid
+        rgba(0, 247, 255, 0.15);
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border-radius: 18px;
+
+    color: #e8ecf5;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    transition: 0.25s;
+}
+
+
+.answer-btn:hover {
+    transform: translateY(-3px);
+
+    border-color: var(--cyan);
+
+    background:
+        rgba(0, 247, 255, 0.08);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 247, 255, 0.08);
+}
+
+
+.answer-letter {
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: 'Orbitron';
+
+    font-weight: bold;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue),
+            var(--purple)
+        );
+}
+
+
+.answer-btn.correct {
+    background:
+        rgba(0, 255, 136, 0.15);
+
+    border-color:
+        var(--green);
+
+    box-shadow:
+        0 0 20px
+        rgba(0, 255, 136, 0.2);
+}
+
+
+.answer-btn.wrong {
+    background:
+        rgba(255, 49, 88, 0.15);
+
+    border-color:
+        var(--red);
+
+    box-shadow:
+        0 0 20px
+        rgba(255, 49, 88, 0.2);
+}
+
+
+/* =====================================
+   LEVEL COMPLETE
+===================================== */
+
+.complete-icon {
+    font-size: 80px;
+
+    text-align: center;
+
+    animation:
+        trophy
+        2s infinite alternate;
+}
+
+
+@keyframes trophy {
+
+    to {
+        transform:
+            scale(1.12)
+            rotate(5deg);
+    }
+
+}
+
+
+.complete-title {
+    font-family: 'Orbitron';
+
+    text-align: center;
+
+    font-size: 35px;
+
+    margin: 15px 0;
+
+    color: var(--yellow);
+}
+
+
+.complete-text {
+    text-align: center;
+
+    color: #aeb7c7;
+}
+
+
+.level-score {
+    text-align: center;
+
+    font-size: 25px;
+
+    font-family: 'Orbitron';
+
+    color: var(--cyan);
+
+    margin: 25px;
+}
+
+
+/* =====================================
+   FINAL SCORE
+===================================== */
+
+.final-score {
+    font-family: 'Orbitron';
+
+    text-align: center;
+
+    font-size:
+        clamp(50px, 10vw, 90px);
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--pink)
+        );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+}
+
+
+.final-message {
+    text-align: center;
+
+    margin: 15px 0;
+
+    color: #aab5c6;
+}
+
+
+/* =====================================
+   STATISTICS
+===================================== */
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin: 30px 0;
+}
+
+
+.stat {
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-radius: 17px;
+
+    padding: 18px;
+
+    text-align: center;
+}
+
+
+.stat h3 {
+    color: var(--cyan);
+
+    font-family: 'Orbitron';
+
+    font-size: 25px;
+}
+
+
+.stat p {
+    color: #8893a5;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+}
+
+
+/* =====================================
+   HIDDEN
+===================================== */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =====================================
+   MOBILE RESPONSIVE
+===================================== */
+
+@media (max-width: 700px) {
+
+    .card {
+        padding: 23px 17px;
+    }
+
+
+    .answers {
+        grid-template-columns: 1fr;
+    }
+
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+
+    .quiz-top {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .level-tag,
+    .score-tag {
+        text-align: center;
+    }
+
+}
+```

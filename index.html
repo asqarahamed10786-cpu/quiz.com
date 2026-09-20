@@ -1,0 +1,229 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TechNova Quiz Challenge</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Effects -->
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+
+    <div class="container">
+
+        <!-- =========================
+             START SCREEN
+        ========================== -->
+        <div class="card" id="startScreen">
+
+            <div class="logo">⚡</div>
+
+            <h1 class="main-title">
+                TECHNOVA QUIZ
+            </h1>
+
+            <p class="subtitle">
+                Enter the ultimate technology quiz challenge.
+                Complete 5 levels, answer 50 questions and
+                prove your technology knowledge before the
+                timer reaches zero.
+            </p>
+
+            <div class="features">
+
+                <div class="feature">
+                    <div class="feature-icon">🚀</div>
+                    <h3>5 LEVELS</h3>
+                    <p>Increasing challenge</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🧠</div>
+                    <h3>50 QUESTIONS</h3>
+                    <p>10 questions per level</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>15 SECONDS</h3>
+                    <p>For every question</p>
+                </div>
+
+            </div>
+
+            <button class="main-btn" onclick="startGame()">
+                START CHALLENGE ⚡
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             QUIZ SCREEN
+        ========================== -->
+        <div class="card hidden" id="quizScreen">
+
+            <div class="quiz-top">
+
+                <div class="level-tag" id="levelDisplay">
+                    LEVEL 1
+                </div>
+
+                <div class="score-tag">
+                    SCORE:
+                    <span id="scoreDisplay">0</span>
+                </div>
+
+            </div>
+
+
+            <!-- Level Progress -->
+            <div class="levels">
+
+                <div class="level-dot current"></div>
+                <div class="level-dot"></div>
+                <div class="level-dot"></div>
+                <div class="level-dot"></div>
+                <div class="level-dot"></div>
+
+            </div>
+
+
+            <!-- Timer + Question Progress -->
+            <div class="timer-section">
+
+                <div class="timer-circle" id="timer">
+                    15
+                </div>
+
+                <div class="progress-container">
+
+                    <div class="question-number" id="questionNumber">
+                        Question 1 / 10
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress" id="progress"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Question -->
+            <div class="question-box">
+
+                <h2 class="question-title" id="question">
+                    Question goes here
+                </h2>
+
+            </div>
+
+
+            <!-- Answers -->
+            <div class="answers" id="answers"></div>
+
+        </div>
+
+
+        <!-- =========================
+             LEVEL COMPLETE
+        ========================== -->
+        <div class="card hidden" id="levelComplete">
+
+            <div class="complete-icon">
+                🏆
+            </div>
+
+            <h2 class="complete-title">
+                LEVEL COMPLETE!
+            </h2>
+
+            <p class="complete-text" id="completeText">
+                Excellent work!
+            </p>
+
+            <div class="level-score" id="levelScore">
+                Score: 0
+            </div>
+
+            <button
+                class="main-btn"
+                id="nextLevelButton"
+                onclick="nextLevel()">
+
+                NEXT LEVEL 🚀
+
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             FINAL RESULT
+        ========================== -->
+        <div class="card hidden" id="finalScreen">
+
+            <div class="complete-icon">
+                👑
+            </div>
+
+            <h2 class="complete-title">
+                QUIZ COMPLETED
+            </h2>
+
+            <div class="final-score" id="finalScore">
+                0/50
+            </div>
+
+            <p class="final-message" id="finalMessage"></p>
+
+
+            <div class="stats">
+
+                <div class="stat">
+                    <h3 id="correctStat">0</h3>
+                    <p>CORRECT ANSWERS</p>
+                </div>
+
+                <div class="stat">
+                    <h3 id="wrongStat">0</h3>
+                    <p>WRONG ANSWERS</p>
+                </div>
+
+                <div class="stat">
+                    <h3 id="accuracyStat">0%</h3>
+                    <p>ACCURACY</p>
+                </div>
+
+            </div>
+
+
+            <button
+                class="main-btn"
+                onclick="restartGame()">
+
+                PLAY AGAIN 🔄
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
+```
