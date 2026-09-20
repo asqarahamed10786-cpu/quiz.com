@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TechNova Quiz Challenge</title>
+
+<style>
+
+/* ================================
+   GOOGLE FONT
+================================ */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ================================
+   VARIABLES
+================================ */
+:root{
+    --cyan:#00f7ff;
+    --blue:#0066ff;
+    --purple:#9d00ff;
+    --pink:#ff00c8;
+    --green:#00ff88;
+    --yellow:#ffe600;
+    --red:#ff3158;
+    --dark:#02030a;
+    --card:#09111f;
+}
+
+/* ================================
+   BASIC RESET
+================================ */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    font-family:'Poppins',sans-serif;
+    background:
+        radial-gradient(circle at 20% 30%,rgba(0,247,255,.15),transparent 30%),
+        radial-gradient(circle at 80% 20%,rgba(157,0,255,.18),transparent 30%),
+        radial-gradient(circle at 50% 80%,rgba(255,0,200,.13),transparent 30%),
+        #02030a;
+
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ================================
+   ANIMATED GRID BACKGROUND
+================================ */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background-image:
+        linear-gradient(rgba(0,247,255,.04) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,247,255,.04) 1px,transparent 1px);
+
+    background-size:45px 45px;
+
+    animation:gridMove 15s linear infinite;
+
+    pointer-events:none;
+}
+
+@keyframes gridMove{
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(45px);
+    }
+}
+
+/* ================================
+   GLOWING ORBS
+================================ */
+.orb{
+    position:fixed;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.3;
+    pointer-events:none;
+}
+
+.orb1{
+    background:#00f7ff;
+    top:-100px;
+    left:-80px;
+    animation:orbMove1 10s infinite alternate;
+}
+
+.orb2{
+    background:#9d00ff;
+    right:-100px;
+    top:30%;
+    animation:orbMove2 12s infinite alternate;
+}
+
+.orb3{
+    background:#ff00c8;
+    left:40%;
+    bottom:-170px;
+}
+
+@keyframes orbMove1{
+    to{
+        transform:translate(150px,150px);
+    }
+}
+
+@keyframes orbMove2{
+    to{
+        transform:translate(-120px,80px);
+    }
+}
+
+/* ================================
+   MAIN CONTAINER
+================================ */
+.container{
+    width:92%;
+    max-width:950px;
+    margin:auto;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:30px 0;
+
+    position:relative;
+    z-index:5;
+}
+
+/* ================================
+   GLASS CARD
+================================ */
+.card{
+    width:100%;
+    padding:35px;
+
+    background:rgba(7,14,30,.78);
+
+    border:1px solid rgba(0,247,255,.22);
+
+    border-radius:28px;
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 0 30px rgba(0,247,255,.08),
+        0 0 80px rgba(157,0,255,.06);
+
+    animation:cardEnter .6s ease;
+}
+
+@keyframes cardEnter{
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+/* ================================
+   START SCREEN
+================================ */
+.logo{
+    width:100px;
+    height:100px;
+
+    margin:0 auto 25px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:45px;
+
+    background:
+        linear-gradient(135deg,var(--cyan),var(--purple),var(--pink));
+
+    box-shadow:
+        0 0 25px var(--cyan),
+        0 0 60px rgba(157,0,255,.5);
+
+    animation:logoFloat 3s ease-in-out infinite;
+}
+
+@keyframes logoFloat{
+    50%{
+        transform:translateY(-10px) rotate(5deg);
+    }
+}
+
+.main-title{
+    text-align:center;
+    font-family:'Orbitron',sans-serif;
+    font-size:clamp(32px,6vw,65px);
+    font-weight:800;
+
+    background:linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--blue),
+        var(--purple),
+        var(--pink),
+        var(--cyan)
+    );
+
+    background-size:300%;
+
+    -webkit-background-clip:text;
+    color:transparent;
+
+    animation:titleGradient 5s linear infinite;
+}
+
+@keyframes titleGradient{
+    100%{
+        background-position:300%;
+    }
+}
+
+.subtitle{
+    text-align:center;
+    color:#aeb8ca;
+    margin:15px auto 30px;
+    max-width:600px;
+    line-height:1.7;
+}
+
+/* ================================
+   FEATURE BOXES
+================================ */
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin:30px 0;
+}
+
+.feature{
+    padding:18px 10px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:16px;
+    text-align:center;
+}
+
+.feature-icon{
+    font-size:27px;
+    margin-bottom:7px;
+}
+
+.feature h3{
+    font-family:'Orbitron';
+    font-size:14px;
+    color:var(--cyan);
+}
+
+.feature p{
+    font-size:12px;
+    color:#919aad;
+    margin-top:4px;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+.main-btn{
+    border:none;
+    outline:none;
+
+    display:block;
+
+    margin:20px auto 0;
+
+    padding:16px 45px;
+
+    border-radius:50px;
+
+    color:white;
+
+    font-family:'Orbitron';
+    font-weight:700;
+
+    cursor:pointer;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--purple),
+            var(--pink)
+        );
+
+    box-shadow:
+        0 8px 30px rgba(157,0,255,.35);
+
+    transition:.3s;
+}
+
+.main-btn:hover{
+    transform:translateY(-4px) scale(1.04);
+
+    box-shadow:
+        0 0 20px var(--purple),
+        0 0 40px rgba(255,0,200,.4);
+}
+
+/* ================================
+   TOP QUIZ INFORMATION
+================================ */
+.quiz-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.level-tag,
+.score-tag{
+    padding:10px 18px;
+    border-radius:30px;
+
+    font-family:'Orbitron';
+    font-size:13px;
+
+    background:rgba(0,247,255,.08);
+
+    border:1px solid rgba(0,247,255,.25);
+}
+
+.level-tag{
+    color:var(--cyan);
+}
+
+.score-tag{
+    color:var(--green);
+}
+
+/* ================================
+   LEVEL BAR
+================================ */
+.levels{
+    display:flex;
+    gap:8px;
+    margin-bottom:25px;
+}
+
+.level-dot{
+    flex:1;
+    height:7px;
+    border-radius:20px;
+    background:#162033;
+}
+
+.level-dot.completed{
+    background:linear-gradient(90deg,var(--cyan),var(--purple));
+    box-shadow:0 0 10px var(--cyan);
+}
+
+.level-dot.current{
+    background:var(--pink);
+    box-shadow:0 0 12px var(--pink);
+}
+
+/* ================================
+   TIMER
+================================ */
+.timer-section{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    margin-bottom:25px;
+}
+
+.timer-circle{
+    width:65px;
+    height:65px;
+    min-width:65px;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-family:'Orbitron';
+    font-size:20px;
+    font-weight:800;
+
+    border:4px solid var(--cyan);
+
+    box-shadow:
+        0 0 15px rgba(0,247,255,.35);
+}
+
+.timer-danger{
+    color:var(--red) !important;
+
+    border-color:var(--red) !important;
+
+    box-shadow:
+        0 0 20px rgba(255,49,88,.5) !important;
+
+    animation:pulseTimer .6s infinite alternate;
+}
+
+@keyframes pulseTimer{
+    to{
+        transform:scale(1.08);
+    }
+}
+
+.progress-container{
+    flex:1;
+}
+
+.question-number{
+    font-size:13px;
+    color:#8994aa;
+    margin-bottom:7px;
+}
+
+.progress-bar{
+    width:100%;
+    height:10px;
+    background:#151e30;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress{
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--blue),
+            var(--purple),
+            var(--pink)
+        );
+
+    border-radius:20px;
+
+    transition:.4s;
+}
+
+/* ================================
+   QUESTION
+================================ */
+.question-box{
+    margin:25px 0;
+}
+
+.question-title{
+    font-family:'Orbitron';
+    line-height:1.5;
+    font-size:clamp(18px,3vw,25px);
+}
+
+/* ================================
+   ANSWERS
+================================ */
+.answers{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.answer-btn{
+    min-height:80px;
+
+    padding:17px;
+
+    border:1px solid rgba(0,247,255,.15);
+
+    background:rgba(255,255,255,.045);
+
+    border-radius:18px;
+
+    color:#e8ecf5;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    display:flex;
+    align-items:center;
+    gap:13px;
+
+    transition:.25s;
+}
+
+.answer-btn:hover{
+    transform:translateY(-3px);
+
+    border-color:var(--cyan);
+
+    background:rgba(0,247,255,.08);
+
+    box-shadow:0 8px 25px rgba(0,247,255,.08);
+}
+
+.answer-letter{
+    width:38px;
+    height:38px;
+    min-width:38px;
+
+    border-radius:10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-family:'Orbitron';
+    font-weight:bold;
+
+    background:linear-gradient(
+        135deg,
+        var(--blue),
+        var(--purple)
+    );
+}
+
+.answer-btn.correct{
+    background:rgba(0,255,136,.15);
+    border-color:var(--green);
+    box-shadow:0 0 20px rgba(0,255,136,.2);
+}
+
+.answer-btn.wrong{
+    background:rgba(255,49,88,.15);
+    border-color:var(--red);
+    box-shadow:0 0 20px rgba(255,49,88,.2);
+}
+
+/* ================================
+   LEVEL COMPLETE
+================================ */
+.complete-icon{
+    font-size:80px;
+    text-align:center;
+    animation:trophy 2s infinite alternate;
+}
+
+@keyframes trophy{
+    to{
+        transform:scale(1.12) rotate(5deg);
+    }
+}
+
+.complete-title{
+    font-family:'Orbitron';
+    text-align:center;
+    font-size:35px;
+    margin:15px 0;
+
+    color:var(--yellow);
+}
+
+.complete-text{
+    text-align:center;
+    color:#aeb7c7;
+}
+
+.level-score{
+    text-align:center;
+    font-size:25px;
+    font-family:'Orbitron';
+    color:var(--cyan);
+    margin:25px;
+}
+
+/* ================================
+   FINAL SCREEN
+================================ */
+.final-score{
+    font-family:'Orbitron';
+    text-align:center;
+    font-size:clamp(50px,10vw,90px);
+
+    background:
+        linear-gradient(90deg,var(--cyan),var(--pink));
+
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.final-message{
+    text-align:center;
+    margin:15px 0;
+    color:#aab5c6;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:30px 0;
+}
+
+.stat{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:17px;
+    padding:18px;
+    text-align:center;
+}
+
+.stat h3{
+    color:var(--cyan);
+    font-family:'Orbitron';
+    font-size:25px;
+}
+
+.stat p{
+    color:#8893a5;
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* ================================
+   HIDDEN
+================================ */
+.hidden{
+    display:none !important;
+}
+
+/* ================================
+   MOBILE
+================================ */
+@media(max-width:700px){
+
+    .card{
+        padding:23px 17px;
+    }
+
+    .answers{
+        grid-template-columns:1fr;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .quiz-top{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .level-tag,
+    .score-tag{
+        text-align:center;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Background glowing effects -->
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="container">
+
+<!-- ======================================
+     START SCREEN
+====================================== -->
+<div class="card" id="startScreen">
+
+    <div class="logo">⚡</div>
+
+    <h1 class="main-title">
+        TECHNOVA QUIZ
+    </h1>
+
+    <p class="subtitle">
+        Enter the ultimate technology quiz challenge.
+        Complete 5 levels, answer 50 questions and prove
+        your technology knowledge before the timer reaches zero.
+    </p>
+
+    <div class="features">
+
+        <div class="feature">
+            <div class="feature-icon">🚀</div>
+            <h3>5 LEVELS</h3>
+            <p>Increasing challenge</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🧠</div>
+            <h3>50 QUESTIONS</h3>
+            <p>10 questions per level</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">⏱️</div>
+            <h3>15 SECONDS</h3>
+            <p>For every question</p>
+        </div>
+
+    </div>
+
+    <button class="main-btn" onclick="startGame()">
+        START CHALLENGE ⚡
+    </button>
+
+</div>
+
+
+<!-- ======================================
+     QUIZ SCREEN
+====================================== -->
+<div class="card hidden" id="quizScreen">
+
+    <div class="quiz-top">
+
+        <div class="level-tag" id="levelDisplay">
+            LEVEL 1
+        </div>
+
+        <div class="score-tag">
+            SCORE:
+            <span id="scoreDisplay">0</span>
+        </div>
+
+    </div>
+
+    <div class="levels">
+
+        <div class="level-dot current"></div>
+        <div class="level-dot"></div>
+        <div class="level-dot"></div>
+        <div class="level-dot"></div>
+        <div class="level-dot"></div>
+
+    </div>
+
+    <div class="timer-section">
+
+        <div class="timer-circle" id="timer">
+            15
+        </div>
+
+        <div class="progress-container">
+
+            <div class="question-number" id="questionNumber">
+                Question 1 / 10
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="question-box">
+
+        <h2 class="question-title" id="question">
+            Question goes here
+        </h2>
+
+    </div>
+
+    <div class="answers" id="answers"></div>
+
+</div>
+
+
+<!-- ======================================
+     LEVEL COMPLETE SCREEN
+====================================== -->
+<div class="card hidden" id="levelComplete">
+
+    <div class="complete-icon">🏆</div>
+
+    <h2 class="complete-title">
+        LEVEL COMPLETE!
+    </h2>
+
+    <p class="complete-text" id="completeText">
+        Excellent work!
+    </p>
+
+    <div class="level-score" id="levelScore">
+        Score: 0
+    </div>
+
+    <button
+        class="main-btn"
+        id="nextLevelButton"
+        onclick="nextLevel()">
+
+        NEXT LEVEL 🚀
+
+    </button>
+
+</div>
+
+
+<!-- ======================================
+     FINAL SCREEN
+====================================== -->
+<div class="card hidden" id="finalScreen">
+
+    <div class="complete-icon">👑</div>
+
+    <h2 class="complete-title">
+        QUIZ COMPLETED
+    </h2>
+
+    <div class="final-score" id="finalScore">
+        0/50
+    </div>
+
+    <p class="final-message" id="finalMessage"></p>
+
+    <div class="stats">
+
+        <div class="stat">
+            <h3 id="correctStat">0</h3>
+            <p>CORRECT ANSWERS</p>
+        </div>
+
+        <div class="stat">
+            <h3 id="wrongStat">0</h3>
+            <p>WRONG ANSWERS</p>
+        </div>
+
+        <div class="stat">
+            <h3 id="accuracyStat">0%</h3>
+            <p>ACCURACY</p>
+        </div>
+
+    </div>
+
+    <button class="main-btn" onclick="restartGame()">
+        PLAY AGAIN 🔄
+    </button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ========================================
+   QUIZ QUESTIONS
+
+   answer: 0 = first option
+   answer: 1 = second option
+   answer: 2 = third option
+   answer: 3 = fourth option
+======================================== */
+
+const quizData = [
+
+/* ========================================
+   LEVEL 1
+======================================== */
+
+[
+{
+question:"What does CPU stand for?",
+options:[
+"Central Processing Unit",
+"Computer Personal Unit",
+"Central Program Utility",
+"Computer Processing User"
+],
+answer:0
+},
+
+{
+question:"Which device is mainly used to type text into a computer?",
+options:[
+"Monitor",
+"Keyboard",
+"Printer",
+"Speaker"
+],
+answer:1
+},
+
+{
+question:"Which of these is an operating system?",
+options:[
+"Windows",
+"Google",
+"Intel",
+"HTML"
+],
+answer:0
+},
+
+{
+question:"What does WWW stand for?",
+options:[
+"World Wide Web",
+"Web World Wire",
+"World Web Window",
+"Wide World Website"
+],
+answer:0
+},
+
+{
+question:"Which device displays information from a computer?",
+options:[
+"Keyboard",
+"Mouse",
+"Monitor",
+"Microphone"
+],
+answer:2
+},
+
+{
+question:"Which company developed the Windows operating system?",
+options:[
+"Apple",
+"Microsoft",
+"Samsung",
+"Intel"
+],
+answer:1
+},
+
+{
+question:"Which technology is commonly used for wireless internet?",
+options:[
+"HDMI",
+"USB",
+"Wi-Fi",
+"VGA"
+],
+answer:2
+},
+
+{
+question:"Which device is commonly used to move the pointer on a computer?",
+options:[
+"Mouse",
+"Scanner",
+"Printer",
+"Speaker"
+],
+answer:0
+},
+
+{
+question:"What is the brain of a computer commonly called?",
+options:[
+"RAM",
+"CPU",
+"SSD",
+"Keyboard"
+],
+answer:1
+},
+
+{
+question:"Which one is a web browser?",
+options:[
+"Chrome",
+"Excel",
+"Windows",
+"Photoshop"
+],
+answer:0
+}
+],
+
+/* ========================================
+   LEVEL 2
+======================================== */
+
+[
+{
+question:"What does RAM stand for?",
+options:[
+"Random Access Memory",
+"Rapid Action Machine",
+"Read Access Module",
+"Remote Access Memory"
+],
+answer:0
+},
+
+{
+question:"Which language is mainly used to structure web pages?",
+options:[
+"Python",
+"HTML",
+"Java",
+"C++"
+],
+answer:1
+},
+
+{
+question:"What does USB stand for?",
+options:[
+"Universal Serial Bus",
+"United System Board",
+"Universal Storage Box",
+"User Serial Base"
+],
+answer:0
+},
+
+{
+question:"Which of these is a search engine?",
+options:[
+"Google",
+"WhatsApp",
+"Windows",
+"Bluetooth"
+],
+answer:0
+},
+
+{
+question:"Which storage device generally has no moving mechanical parts?",
+options:[
+"SSD",
+"DVD",
+"Floppy Disk",
+"Magnetic Tape"
+],
+answer:0
+},
+
+{
+question:"What does URL stand for?",
+options:[
+"Universal Read Link",
+"Uniform Resource Locator",
+"User Resource Line",
+"Unified Routing Link"
+],
+answer:1
+},
+
+{
+question:"Which technology allows nearby devices to communicate wirelessly over short distances?",
+options:[
+"Bluetooth",
+"Ethernet",
+"HDMI",
+"VGA"
+],
+answer:0
+},
+
+{
+question:"Which company created the Android operating system before it was acquired by Google?",
+options:[
+"Android Inc.",
+"Microsoft",
+"IBM",
+"Nokia"
+],
+answer:0
+},
+
+{
+question:"What type of device is a printer?",
+options:[
+"Input device",
+"Output device",
+"Storage device",
+"Processing device"
+],
+answer:1
+},
+
+{
+question:"What does AI stand for?",
+options:[
+"Automatic Internet",
+"Artificial Intelligence",
+"Advanced Interface",
+"Artificial Internet"
+],
+answer:1
+}
+],
+
+/* ========================================
+   LEVEL 3
+======================================== */
+
+[
+{
+question:"Which programming language is widely used for artificial intelligence and data science?",
+options:[
+"Python",
+"HTML",
+"CSS",
+"XML"
+],
+answer:0
+},
+
+{
+question:"What does IP stand for in computer networking?",
+options:[
+"Internet Protocol",
+"Internal Program",
+"Internet Processor",
+"Information Port"
+],
+answer:0
+},
+
+{
+question:"Which protocol is commonly used for secure websites?",
+options:[
+"HTTP",
+"HTTPS",
+"FTP",
+"SMTP"
+],
+answer:1
+},
+
+{
+question:"What is cloud computing?",
+options:[
+"Computing only during rainy weather",
+"Using remote internet-based computing resources",
+"Repairing computer hardware",
+"Connecting only two computers"
+],
+answer:1
+},
+
+{
+question:"Which component stores data temporarily while programs are running?",
+options:[
+"RAM",
+"SSD",
+"Hard Disk",
+"DVD"
+],
+answer:0
+},
+
+{
+question:"What is the main role of a firewall?",
+options:[
+"Increase monitor brightness",
+"Protect a network from unauthorized access",
+"Charge a computer battery",
+"Improve speaker sound"
+],
+answer:1
+},
+
+{
+question:"Which of these is a programming language?",
+options:[
+"Python",
+"Chrome",
+"Windows",
+"Wi-Fi"
+],
+answer:0
+},
+
+{
+question:"Which unit is commonly used to measure processor clock frequency?",
+options:[
+"Gigahertz",
+"Gigabyte",
+"Megapixel",
+"Volt"
+],
+answer:0
+},
+
+{
+question:"What is phishing?",
+options:[
+"A cyberattack designed to trick users into revealing information",
+"A computer cooling technique",
+"A programming method",
+"A file compression method"
+],
+answer:0
+},
+
+{
+question:"Which technology enables digital currencies such as Bitcoin to record transactions?",
+options:[
+"Bluetooth",
+"Blockchain",
+"HTML",
+"GPS"
+],
+answer:1
+}
+],
+
+/* ========================================
+   LEVEL 4
+======================================== */
+
+[
+{
+question:"What does IoT stand for?",
+options:[
+"Internet of Things",
+"Interface of Technology",
+"Internet of Telephones",
+"Input of Technology"
+],
+answer:0
+},
+
+{
+question:"Which system allows computers to translate domain names into IP addresses?",
+options:[
+"DNS",
+"USB",
+"GPU",
+"HTML"
+],
+answer:0
+},
+
+{
+question:"What is a GPU mainly designed to process efficiently?",
+options:[
+"Graphics and highly parallel calculations",
+"Keyboard input only",
+"Internet passwords",
+"Printed documents"
+],
+answer:0
+},
+
+{
+question:"Which HTTP status code commonly means 'Page Not Found'?",
+options:[
+"200",
+"301",
+"404",
+"500"
+],
+answer:2
+},
+
+{
+question:"What is machine learning?",
+options:[
+"A method enabling computers to learn patterns from data",
+"A mechanical keyboard design",
+"A type of computer monitor",
+"A wired networking standard"
+],
+answer:0
+},
+
+{
+question:"Which company originally developed the Java programming language?",
+options:[
+"Sun Microsystems",
+"Apple",
+"Intel",
+"Adobe"
+],
+answer:0
+},
+
+{
+question:"What does SQL commonly help developers do?",
+options:[
+"Manage and query relational databases",
+"Create physical computer chips",
+"Increase internet signal strength",
+"Repair monitors"
+],
+answer:0
+},
+
+{
+question:"Which device forwards data packets between different networks?",
+options:[
+"Router",
+"Keyboard",
+"Scanner",
+"Monitor"
+],
+answer:0
+},
+
+{
+question:"What is encryption primarily used for?",
+options:[
+"Protecting information by transforming it into a coded form",
+"Increasing screen size",
+"Cooling a processor",
+"Printing documents"
+],
+answer:0
+},
+
+{
+question:"Which number system is fundamentally used by digital computers?",
+options:[
+"Decimal",
+"Binary",
+"Roman",
+"Octal only"
+],
+answer:1
+}
+],
+
+/* ========================================
+   LEVEL 5
+======================================== */
+
+[
+{
+question:"How many bits are in one byte?",
+options:[
+"4",
+"8",
+"16",
+"32"
+],
+answer:1
+},
+
+{
+question:"What is the binary representation of decimal number 10?",
+options:[
+"1010",
+"1001",
+"1110",
+"1100"
+],
+answer:0
+},
+
+{
+question:"What does API stand for?",
+options:[
+"Application Programming Interface",
+"Advanced Program Internet",
+"Application Processing Input",
+"Automated Programming Internet"
+],
+answer:0
+},
+
+{
+question:"Which data structure follows the LIFO principle?",
+options:[
+"Queue",
+"Stack",
+"Tree",
+"Graph"
+],
+answer:1
+},
+
+{
+question:"Which data structure normally follows the FIFO principle?",
+options:[
+"Stack",
+"Queue",
+"Tree",
+"Hash"
+],
+answer:1
+},
+
+{
+question:"What is Git primarily used for?",
+options:[
+"Version control",
+"Video editing",
+"Hardware repair",
+"Wi-Fi encryption"
+],
+answer:0
+},
+
+{
+question:"Which part of an operating system manages core hardware and system resources?",
+options:[
+"Kernel",
+"Browser",
+"Compiler",
+"Spreadsheet"
+],
+answer:0
+},
+
+{
+question:"What does JSON stand for?",
+options:[
+"JavaScript Object Notation",
+"Java Source Object Network",
+"Java System Output Name",
+"Joined Script Object Node"
+],
+answer:0
+},
+
+{
+question:"Which algorithmic search method repeatedly halves a sorted search interval?",
+options:[
+"Linear Search",
+"Binary Search",
+"Depth-First Search",
+"Bubble Sort"
+],
+answer:1
+},
+
+{
+question:"What does IDE stand for in software development?",
+options:[
+"Integrated Development Environment",
+"Internet Development Engine",
+"Internal Data Environment",
+"Integrated Digital Equipment"
+],
+answer:0
+}
+
+]
+
+];
+
+
+/* ========================================
+   GAME VARIABLES
+======================================== */
+
+let currentLevel = 0;
+let currentQuestion = 0;
+
+let score = 0;
+let correctAnswers = 0;
+let wrongAnswers = 0;
+
+let levelStartScore = 0;
+
+let timeLeft = 15;
+
+let timerInterval;
+
+let answered = false;
+
+
+/* ========================================
+   HTML ELEMENTS
+======================================== */
+
+const startScreen =
+document.getElementById("startScreen");
+
+const quizScreen =
+document.getElementById("quizScreen");
+
+const levelCompleteScreen =
+document.getElementById("levelComplete");
+
+const finalScreen =
+document.getElementById("finalScreen");
+
+const questionElement =
+document.getElementById("question");
+
+const answersElement =
+document.getElementById("answers");
+
+const timerElement =
+document.getElementById("timer");
+
+const scoreDisplay =
+document.getElementById("scoreDisplay");
+
+const levelDisplay =
+document.getElementById("levelDisplay");
+
+const questionNumber =
+document.getElementById("questionNumber");
+
+const progress =
+document.getElementById("progress");
+
+
+/* ========================================
+   START GAME
+======================================== */
+
+function startGame(){
+
+    startScreen.classList.add("hidden");
+
+    quizScreen.classList.remove("hidden");
+
+    currentLevel = 0;
+    currentQuestion = 0;
+
+    score = 0;
+
+    correctAnswers = 0;
+    wrongAnswers = 0;
+
+    levelStartScore = 0;
+
+    updateLevelIndicators();
+
+    loadQuestion();
+
+}
+
+
+/* ========================================
+   LOAD QUESTION
+======================================== */
+
+function loadQuestion(){
+
+    clearInterval(timerInterval);
+
+    answered = false;
+
+    const questionData =
+        quizData[currentLevel][currentQuestion];
+
+    levelDisplay.textContent =
+        `LEVEL ${currentLevel + 1}`;
+
+    scoreDisplay.textContent =
+        score;
+
+    questionNumber.textContent =
+        `Question ${currentQuestion + 1} / 10`;
+
+    progress.style.width =
+        `${((currentQuestion + 1) / 10) * 100}%`;
+
+    questionElement.textContent =
+        questionData.question;
+
+    answersElement.innerHTML = "";
+
+    const letters = ["A","B","C","D"];
+
+    questionData.options.forEach((option,index)=>{
+
+        const button =
+            document.createElement("button");
+
+        button.className =
+            "answer-btn";
+
+        button.innerHTML = `
+            <span class="answer-letter">
+                ${letters[index]}
+            </span>
+
+            <span>
+                ${option}
+            </span>
+        `;
+
+        button.onclick = () =>
+            selectAnswer(index,button);
+
+        answersElement.appendChild(button);
+
+    });
+
+    startTimer();
+
+}
+
+
+/* ========================================
+   TIMER
+======================================== */
+
+function startTimer(){
+
+    timeLeft = 15;
+
+    timerElement.textContent =
+        timeLeft;
+
+    timerElement.classList.remove(
+        "timer-danger"
+    );
+
+    timerInterval =
+        setInterval(()=>{
+
+            timeLeft--;
+
+            timerElement.textContent =
+                timeLeft;
+
+            if(timeLeft <= 5){
+
+                timerElement.classList.add(
+                    "timer-danger"
+                );
+
+            }
+
+            if(timeLeft <= 0){
+
+                clearInterval(timerInterval);
+
+                timeUp();
+
+            }
+
+        },1000);
+
+}
+
+
+/* ========================================
+   SELECT ANSWER
+======================================== */
+
+function selectAnswer(
+    selectedIndex,
+    selectedButton
+){
+
+    if(answered) return;
+
+    answered = true;
+
+    clearInterval(timerInterval);
+
+    const questionData =
+        quizData[currentLevel][currentQuestion];
+
+    const buttons =
+        document.querySelectorAll(
+            ".answer-btn"
+        );
+
+    buttons.forEach(button=>{
+
+        button.disabled = true;
+
+    });
+
+    if(
+        selectedIndex ===
+        questionData.answer
+    ){
+
+        selectedButton.classList.add(
+            "correct"
+        );
+
+        /*
+        100 base points +
+        remaining time bonus
+        */
+
+        score += 100 + timeLeft * 5;
+
+        correctAnswers++;
+
+    }
+
+    else{
+
+        selectedButton.classList.add(
+            "wrong"
+        );
+
+        buttons[
+            questionData.answer
+        ].classList.add("correct");
+
+        wrongAnswers++;
+
+    }
+
+    scoreDisplay.textContent =
+        score;
+
+    setTimeout(()=>{
+
+        nextQuestion();
+
+    },1100);
+
+}
+
+
+/* ========================================
+   TIME UP
+======================================== */
+
+function timeUp(){
+
+    if(answered) return;
+
+    answered = true;
+
+    wrongAnswers++;
+
+    const questionData =
+        quizData[currentLevel][currentQuestion];
+
+    const buttons =
+        document.querySelectorAll(
+            ".answer-btn"
+        );
+
+    buttons.forEach(button=>{
+
+        button.disabled = true;
+
+    });
+
+    buttons[
+        questionData.answer
+    ].classList.add("correct");
+
+    setTimeout(()=>{
+
+        nextQuestion();
+
+    },1100);
+
+}
+
+
+/* ========================================
+   NEXT QUESTION
+======================================== */
+
+function nextQuestion(){
+
+    currentQuestion++;
+
+    if(
+        currentQuestion <
+        quizData[currentLevel].length
+    ){
+
+        loadQuestion();
+
+    }
+
+    else{
+
+        showLevelComplete();
+
+    }
+
+}
+
+
+/* ========================================
+   LEVEL COMPLETED
+======================================== */
+
+function showLevelComplete(){
+
+    quizScreen.classList.add("hidden");
+
+    levelCompleteScreen.classList.remove(
+        "hidden"
+    );
+
+    const earnedScore =
+        score - levelStartScore;
+
+    document.getElementById(
+        "levelScore"
+    ).textContent =
+        `Level Score: ${earnedScore}`;
+
+    document.getElementById(
+        "completeText"
+    ).textContent =
+        `You completed Level ${
+            currentLevel + 1
+        }!`;
+
+    const nextButton =
+        document.getElementById(
+            "nextLevelButton"
+        );
+
+    if(currentLevel === 4){
+
+        nextButton.textContent =
+            "VIEW FINAL RESULT 👑";
+
+    }
+
+    else{
+
+        nextButton.textContent =
+            `UNLOCK LEVEL ${
+                currentLevel + 2
+            } 🚀`;
+
+    }
+
+    updateLevelIndicators();
+
+}
+
+
+/* ========================================
+   NEXT LEVEL
+======================================== */
+
+function nextLevel(){
+
+    levelCompleteScreen.classList.add(
+        "hidden"
+    );
+
+    if(currentLevel === 4){
+
+        showFinalResult();
+
+        return;
+
+    }
+
+    currentLevel++;
+
+    currentQuestion = 0;
+
+    levelStartScore = score;
+
+    quizScreen.classList.remove(
+        "hidden"
+    );
+
+    updateLevelIndicators();
+
+    loadQuestion();
+
+}
+
+
+/* ========================================
+   LEVEL INDICATORS
+======================================== */
+
+function updateLevelIndicators(){
+
+    const dots =
+        document.querySelectorAll(
+            ".level-dot"
+        );
+
+    dots.forEach((dot,index)=>{
+
+        dot.classList.remove(
+            "current",
+            "completed"
+        );
+
+        if(index < currentLevel){
+
+            dot.classList.add(
+                "completed"
+            );
+
+        }
+
+        else if(
+            index === currentLevel
+        ){
+
+            dot.classList.add(
+                "current"
+            );
+
+        }
+
+    });
+
+}
+
+
+/* ========================================
+   FINAL RESULT
+======================================== */
+
+function showFinalResult(){
+
+    finalScreen.classList.remove(
+        "hidden"
+    );
+
+    document.getElementById(
+        "finalScore"
+    ).textContent =
+        `${correctAnswers}/50`;
+
+    document.getElementById(
+        "correctStat"
+    ).textContent =
+        correctAnswers;
+
+    document.getElementById(
+        "wrongStat"
+    ).textContent =
+        wrongAnswers;
+
+    const accuracy =
+        Math.round(
+            (correctAnswers / 50) * 100
+        );
+
+    document.getElementById(
+        "accuracyStat"
+    ).textContent =
+        accuracy + "%";
+
+    const message =
+        document.getElementById(
+            "finalMessage"
+        );
+
+    if(accuracy >= 90){
+
+        message.textContent =
+            "🏆 Outstanding! You are a true Tech Master!";
+
+    }
+
+    else if(accuracy >= 75){
+
+        message.textContent =
+            "🚀 Excellent performance! Your technology knowledge is impressive.";
+
+    }
+
+    else if(accuracy >= 60){
+
+        message.textContent =
+            "⚡ Good job! Keep learning and improving your technology skills.";
+
+    }
+
+    else if(accuracy >= 40){
+
+        message.textContent =
+            "💡 Nice attempt! Practice more and try the challenge again.";
+
+    }
+
+    else{
+
+        message.textContent =
+            "🌱 Every expert starts somewhere. Learn, retry and level up!";
+
+    }
+
+}
+
+
+/* ========================================
+   RESTART
+======================================== */
+
+function restartGame(){
+
+    finalScreen.classList.add(
+        "hidden"
+    );
+
+    currentLevel = 0;
+    currentQuestion = 0;
+
+    score = 0;
+
+    correctAnswers = 0;
+    wrongAnswers = 0;
+
+    levelStartScore = 0;
+
+    quizScreen.classList.remove(
+        "hidden"
+    );
+
+    updateLevelIndicators();
+
+    loadQuestion();
+
+}
+
+</script>
+
+</body>
+</html>
